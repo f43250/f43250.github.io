@@ -1,24 +1,24 @@
 ---
 layout: post
-title: "Java8流操作(steam)"
+title: "Java8流操作(Stream)"
 subtitle: 'Some tips on leraning Swagger'
 author: "FengJiaWen"
 header-style: text
 tags:
   - Java8
-  - Steam
+  - Stream
   - 流操作
 ---
 
-Update: Java8流操作(steam)学习总结
+Update: Java8流操作(Srteam)学习总结
 
 ---
 
-<p>   最近开始学习java8的新特性(平时虽然一直用的jdk8,但是它的lumbda表达式,函数式接口,流操作等等一直没有学习和使用过),之前的lumbda表达式和函数式接口感觉似懂非懂的,故这两个特性的感悟后面再写,先写下感悟比较深的流操作(顺便把刚做的项目中间一些foreach改成流操作).</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近开始学习java8的新特性(平时虽然一直用的jdk8,但是它的lumbda表达式,函数式接口,流操作等等一直没有学习和使用过),之前的lumbda表达式和函数式接口感觉似懂非懂的,故这两个特性的感悟后面再写,先写下感悟比较深的流操作(顺便把刚做的项目中间一些foreach改成流操作).</p>
 <p>流的定义:从支持数据处理操作的源生成的元素序列</p>
 <p>(1)元素序列:集合与流的区别
-   <p>1.集合:主要目的是以特定的时间/空间复杂度存储和访问元素(如ArrayList/LinkedList).
-   <p>2.流:主要目的在于表达计算(如filter()/sorted()/map())等.
+   <p>1.集合:主要目的是以特定的时间/空间复杂度存储和访问元素(如ArrayList/LinkedList).集合元素先全部算出来.
+   <p>2.流:主要目的在于表达计算(如filter()/sorted()/map())等.流元素按需计算.流只能遍历一次.
 <p>(2)源:流会使用一个提供数据的源:如集合、数组、或输入输出流等.
    <p>1.从有序集合生成的流会保留原有顺序.
    <p>2.由列表生成的流,其元素顺序与列表一致.</p>
