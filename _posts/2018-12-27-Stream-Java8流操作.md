@@ -5,12 +5,10 @@ subtitle: 'Some tips on leraning Swagger'
 author: "FengJiaWen"
 header-style: text
 tags:
-  - Java8
-  - Stream
-  - 流操作
+  - Java8新特性
 ---
 
-Update: Java8流操作(Srteam)学习总结
+Update: Java8新特性学习总结
 
 ---
 
@@ -31,6 +29,10 @@ Update: Java8流操作(Srteam)学习总结
 <p>(5)内部迭代:
    <p>1.与使用显示迭代器的集合不同,流的迭代操作实在背后进行的.</p>
 <p>流的扁平化:
-    <p>1.flatmap方法让你把一个流中的每个值都换成另外一个流,然后把所有的流连接起来成为一个流.
+    <p>1.flatmap方法让你把一个流中的每个值都换成另外一个流,然后把所有的流连接起来成为一个流.</p>
+
+</p>一些项目中用到jdk8特性的地方</p>
+<p>        Map<Long, List<devAtmsDTO>> collect = devAtmDTO.stream().collect(Collectors.groupingBy(devAtmsDTO::getFloorNo, Collectors.toList()));
+        return getSuccessResult(collect);</p>
 
  
