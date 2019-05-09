@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Java8流操作(Stream)"
+title: "Java8新特性"
 subtitle: 'Some tips on leraning Swagger'
 author: "FengJiaWen"
 header-style: text
@@ -51,7 +51,7 @@ Update: Java8新特性学习总结
 <p>                    collect = hotels.stream().filter(s -> s.getHotelName().contains(hotelName)).
                             collect(Collectors.groupingBy(SysHotel::getEnterpriseName, Collectors.toList()));</p> 
 
-<p>Optional:对象不存在时抛出指定异常(避免null出现)</p
+<p>Optional:对象不存在时抛出指定异常(避免null出现)</p>
 <p>        Optional<GoodsWarehouse> goodsWarehouse = Optional.ofNullable(goodsWarehouseMapper.findWarehouseById(id));
         return goodsWarehouse.orElseThrow(() -> new KlgException("查询失败"));</p> 
 
@@ -70,7 +70,7 @@ return user.getOrders();
 } else {
 return Collections.emptyList();
 }</p>
-<p>那么不得不说我们的思维仍然是在原地踏步, 只是本能的认为它不过是 User 实例的包装, 这与我们之前写成如下是没有任何区别的,所以:**Optional 中我们真正可依赖的应该是除了 isPresent() 和 get() 的其他方法**</p>
+<p>那么不得不说我们的思维仍然是在原地踏步, 只是本能的认为它不过是 User 实例的包装, 这与我们之前写成如下是没有任何区别的,所以:**Optional 中我们真正可依赖的应该是除了 isPresent() 和 get() 的其他方法**.例如Optional<T>.orElse()、Optional<T>.orElseGet()、Optional<T>.orElseThrow()Optional<T>.map().xxx</p>
 
 
 
