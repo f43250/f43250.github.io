@@ -43,11 +43,11 @@ Update: Java8新特性学习总结
         Map<Long, List<devAtmsDTO>> collect = devAtmDTO.stream().collect(Collectors.groupingBy(devAtmsDTO::getFloorNo, Collectors.toList()));
         return getSuccessResult(collect);</p>
 
-<p>根据enterpriseName分组同时过滤掉hotelName不包含传入字段的对象</p
+<p>根据enterpriseName分组同时过滤掉hotelName不包含传入字段的对象</p>
 <p>                    collect = hotels.stream().filter(s -> s.getHotelName().contains(hotelName)).
                             collect(Collectors.groupingBy(SysHotel::getEnterpriseName, Collectors.toList()));</p> 
 
-<p>Optional:当里面对象存在时取出SysUid,不存在赋值"0L"(避免null出现)</p
+<p>Optional:当里面对象存在时取出SysUid,不存在赋值"0L"(避免null出现)</p>
 <p>                    collect = hotels.stream().filter(s -> s.getHotelName().contains(hotelName)).
                             collect(Collectors.groupingBy(SysHotel::getEnterpriseName, Collectors.toList()));</p> 
 
