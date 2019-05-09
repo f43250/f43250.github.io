@@ -33,12 +33,12 @@ Update: Java8新特性学习总结
 
 </p>一些项目中用到jdk8特性的地方</p>
 
-<p>根据对象集合里面的floorNo字段进行堆集合内容分组:</p
+<p>根据对象集合里面的floorNo字段进行堆集合内容分组:</p>
 <p>        List<devAtmsDTO> devAtmDTO = machineListService.findWeChatMachineList(hotelId, location, atmNo);
         Map<Long, List<devAtmsDTO>> collect = devAtmDTO.stream().collect(Collectors.groupingBy(devAtmsDTO::getFloorNo, Collectors.toList()));
         return getSuccessResult(collect);</p>
 
-<p>根据floorNo分组同时过滤掉shortNum=0的集合</p
+<p>根据floorNo分组同时过滤掉shortNum=0的集合</p>
 <p>        List<devAtmsDTO> devAtmDTO = machineListService.findWeChatMachineList(hotelId, location, atmNo);
         Map<Long, List<devAtmsDTO>> collect = devAtmDTO.stream().collect(Collectors.groupingBy(devAtmsDTO::getFloorNo, Collectors.toList()));
         return getSuccessResult(collect);</p>
