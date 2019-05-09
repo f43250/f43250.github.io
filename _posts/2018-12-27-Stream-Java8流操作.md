@@ -32,7 +32,8 @@ Update: Java8新特性学习总结
     <p>1.flatmap方法让你把一个流中的每个值都换成另外一个流,然后把所有的流连接起来成为一个流.</p>
 
 </p>一些项目中用到jdk8特性的地方</p>
-<p>        Map<Long, List<devAtmsDTO>> collect = devAtmDTO.stream().collect(Collectors.groupingBy(devAtmsDTO::getFloorNo, Collectors.toList()));
-        return getSuccessResult(collect);</p>
+
+        Map<Long, List<devAtmsDTO>> collect = devAtmDTO.stream().collect(Collectors.groupingBy(devAtmsDTO::getFloorNo, Collectors.toList()));
+        return getSuccessResult(collect);
 
  
