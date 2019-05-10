@@ -45,9 +45,11 @@ plugins: [jekyll-paginate]
 # replace redcarpet to kramdown,
 # although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
 # document: http://jekyllrb.com/docs/configuration/#kramdown
-markdown: redcarpet
-redcarpet:
-    extensions: [ "hard_wrap","autolink", "tables", "strikethrough", "superscript", "with_toc_data", "highlight", "prettify","no_intra_emphasis"]
+markdown: kramdown
+kramdown:
+    input: GFM
+# redcarpet:
+#     extensions: [ "hard_wrap","autolink", "tables", "strikethrough", "superscript", "with_toc_data", "highlight", "prettify","no_intra_emphasis"]
 # kramdown:
 #   input: GFM                            # use Github Flavored Markdown !important
 #   syntax_highlighter_opts:
@@ -60,7 +62,7 @@ redcarpet:
 
 
 # Disqus settings
-disqus_username: hux
+disqus_username: FLE
 
 # Netease settings
 netease_comment: false
@@ -73,7 +75,7 @@ netease_comment: false
 
 # Google Analytics
 ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
-ga_domain: huangxuan.me
+ga_domain: fengjiawen.me
 
 
 
