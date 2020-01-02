@@ -5,9 +5,9 @@ subtitle: 'Some tips on leraning ReentrantLock'
 author: "FengJiaWen"
 header-style: text
 tags:
-  - JVM
-  - 虚拟机
-  - GC
+  - 可重入锁
+  - 自旋
+  - 锁
 ---
 
 Update: ReentrantLock
@@ -16,16 +16,16 @@ Update: ReentrantLock
 
 #ReentrantLock
 ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new ReentrantLock(true)```表示公平锁.
-## 1.lock()加锁过程:
+# 1.lock()加锁过程:
 ###非公平锁
-```Java
+{% highlight java %}
         final void lock() {
             if (compareAndSetState(0, 1))
                 setExclusiveOwnerThread(Thread.currentThread());
             else
                 acquire(1);
         }
-```
+{% endhighlight %}
 ###公平锁
 ```Java
         final void lock() {
@@ -193,7 +193,7 @@ hasQueuedPredecessors方法理解:
         (1)如果锁的状态state为0,CAS加锁,将state置为1,返回true.(立即获取锁).
         (2)如果锁已经被当前线程持有,则重入锁,将state+1,返回true.
         (3)如果锁已经被其他线程持有,**返回false.**
-## 2.unlock()解锁过程:
+# 2.unlock()解锁过程:
 
 ```Java
     public void unlock() {
