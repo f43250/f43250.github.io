@@ -14,8 +14,10 @@ Update: ReentrantLock
 
 ---
 
-# ReentrantLock
-
+*ReentrantLock*
+_ReentrantLock_
+**ReentrantLock**
+__ReentrantLock__
 ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new ReentrantLock(true)```表示公平锁.
 1.lock()加锁过程:
 ## 非公平锁
