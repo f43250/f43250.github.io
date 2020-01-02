@@ -196,7 +196,7 @@ hasQueuedPredecessors方法理解:
         (1)如果锁的状态state为0,CAS加锁,将state置为1,返回true.(立即获取锁).
         (2)如果锁已经被当前线程持有,则重入锁,将state+1,返回true.
         (3)如果锁已经被其他线程持有,**返回false.**
-# 2.unlock()解锁过程:
+**2.unlock()解锁过程:**
 
 {% highlight java %}
     public void unlock() {
@@ -237,7 +237,7 @@ hasQueuedPredecessors方法理解:
         }
 {% endhighlight %}
 
-# ReentrantReadWriteLock
+**ReentrantReadWriteLock**
 
 **读锁(共享锁)ReadLock**
 {% highlight java %}
