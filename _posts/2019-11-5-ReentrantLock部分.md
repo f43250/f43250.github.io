@@ -14,10 +14,10 @@ Update: ReentrantLock
 
 ---
 
-# ReentrantLock
+#ReentrantLock
 ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new ReentrantLock(true)```表示公平锁.
 1.lock()加锁过程:
-### 非公平锁
+###非公平锁
 {% highlight java %}
         final void lock() {
             if (compareAndSetState(0, 1))
@@ -27,27 +27,27 @@ ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new Reentra
         }
 {% endhighlight %}
 ###公平锁
-```Java
+{% highlight java %}
         final void lock() {
             acquire(1);
         }
-```
+{% endhighlight %}
 1.```若compareAndSetState()```方法返回ture,表明CAS成功,```setExclusiveOwnerThread()```方法将持有锁的线程设置为当前线程.
 2.acquire(1)方法:第一次自旋
 若state=0,则加锁成功,将持有锁的线程标记为当前线程.
 若加锁失败,调用acquire(1)进行一次自旋.参数意义:假如被重入,计数器每次增加1,方便在解锁的时候-1,直到state=0标志锁为自由状态,之前被park的线程被唤醒,继续执行业务逻辑.
 
 **acquire(arg)方法**
-```Java
+{% highlight java %}
         public final void acquire(int arg) {
             if (!tryAcquire(arg) &&
                 acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
                 selfInterrupt();
         }
-```
+{% endhighlight %}
 
 **非公平锁尝试获取锁:nonfairTryAcquire(1)**
-```Java
+{% highlight java %}
         final boolean nonfairTryAcquire(int acquires) {
             //获取当前线程
             final Thread current = Thread.currentThread();
@@ -71,9 +71,9 @@ ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new Reentra
             //如果锁状态不是0,直接返回
             return false;
         }
-```
+{% endhighlight %}
 **addWaiter(Node mode)方法**
-```Java
+{% highlight java %}
     private Node addWaiter(Node mode) {
         //初始化一个为Thread为当前线程的Node的独占锁(nextwaiter的值为Node.EXCLUSIVE为独占锁,nextwaiter的值为Node.SHARED为共享锁.
         Node node = new Node(Thread.currentThread(), mode);
@@ -94,9 +94,9 @@ ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new Reentra
         enq(node);
         return node;
     }
-```
+{% endhighlight %}
 **enq(final Node node)方法**
-```Java
+{% highlight java %}
     private Node enq(final Node node) {
         for (;;) {
             Node t = tail;
@@ -116,9 +116,9 @@ ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new Reentra
             }
         }
     }
-```
+{% endhighlight %}
 **acquireQueued(final Node node, int arg)方法**
-```Java
+{% highlight java %}
     final boolean acquireQueued(final Node node, int arg) {
         boolean failed = true;
         try {
@@ -140,9 +140,9 @@ ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new Reentra
                 cancelAcquire(node);
         }
     }
-```
+{% endhighlight %}
 **公平锁尝试索取锁:tryAcquire(1)**
-```Java
+{% highlight java %}
         protected final boolean tryAcquire(int acquires) {
             //获取当前线程
             final Thread current = Thread.currentThread();
@@ -167,9 +167,9 @@ ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new Reentra
             return false;
         }
     }
-```
+{% endhighlight %}
 **hasQueuedPredecessors**
-```Java
+{% highlight java %}
     public final boolean hasQueuedPredecessors() {
         //队尾赋值给t
         Node t = tail; 
@@ -179,7 +179,7 @@ ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new Reentra
         return h != t &&
             ((s = h.next) == null || s.thread != Thread.currentThread());
     }
-```
+{% endhighlight %}
 hasQueuedPredecessors方法理解:
 1. ```h!=t```判断队头和队尾指向的Node不同,因为头节点始终是null,所以含义为队列中除了头结点 **(头结点thread值为null,不参与排队)** 还有线程在排队.(若队列已经初始化:返回false,队列未初始化队头队尾都指向null,返回false).
 2. ```(s = h.next) == null```判断队头指向的头节点的后驱节点非null(下一个排队的人不是null); ```s.thread != Thread.currentThread()```判断下一个节点的线程不等于当前尝试索取锁的线程.这里个人理解作者判断非常严谨,因为整个return为非原子操作,判断了```h!=t```之后可能第一个线程释放了锁,第二个线程获取了锁,队列中无人排队了,所以再进行一次判断,保证队列中头结点的下一个节点不为null.
@@ -195,14 +195,14 @@ hasQueuedPredecessors方法理解:
         (3)如果锁已经被其他线程持有,**返回false.**
 # 2.unlock()解锁过程:
 
-```Java
+{% highlight java %}
     public void unlock() {
         sync.release(1);
     }
-```
+{% endhighlight %}
 1.此处参数"1"解释了为什么acquire(1)方法参数是1.(每次对锁的计数器加减1)
 
-```Java
+{% highlight java %}
     public final boolean release(int arg) {
         if (tryRelease(arg)) {
             //如果锁状态被释放,处于自由状态
@@ -214,9 +214,9 @@ hasQueuedPredecessors方法理解:
         }
         return false;
     }
-```
+{% endhighlight %}
 
-```Java
+{% highlight java %}
     protected final boolean tryRelease(int releases) {
             int c = getState() - releases;
             if (Thread.currentThread() != getExclusiveOwnerThread())
@@ -232,18 +232,18 @@ hasQueuedPredecessors方法理解:
             setState(c);
             return free;
         }
-```
+{% endhighlight %}
 
 #ReentrantReadWriteLock
 
 **读锁(共享锁)ReadLock**
-```Java
+{% highlight java %}
     public void lock() {
         sync.acquireShared(1);
     }
-```
+{% endhighlight %}
 
-```Java
+{% highlight java %}
     public final void acquireShared(int arg) {
         if (tryAcquireShared(arg) < 0)
             /*tryAcquireShared方法返回值:
@@ -253,9 +253,9 @@ hasQueuedPredecessors方法理解:
             */
             doAcquireShared(arg);
     }
-```
+{% endhighlight %}
 **doAcquireShared(arg)**
-```Java
+{% highlight java %}
     private void doAcquireShared(int arg) {
         final Node node = addWaiter(Node.SHARED);
         boolean failed = true;
@@ -284,9 +284,9 @@ hasQueuedPredecessors方法理解:
                 cancelAcquire(node);
         }
     }
-```
+{% endhighlight %}
 **setHeadAndPropagate(node, r)**
-```Java
+{% highlight java %}
     private void setHeadAndPropagate(Node node, int propagate) {
         Node h = head; 
         setHead(node);
@@ -301,9 +301,9 @@ hasQueuedPredecessors方法理解:
                 doReleaseShared();
         }
     }
-```
+{% endhighlight %}
 **doReleaseShared()**
-```Java
+{% highlight java %}
     private void doReleaseShared() {
         for (;;) {
             Node h = head;
@@ -322,11 +322,11 @@ hasQueuedPredecessors方法理解:
                 break;
         }
     }
-```
+{% endhighlight %}
 **写锁(独占锁)WriteLock**
-```Java
+{% highlight java %}
     public void lock() {
         sync.acquire(1);
     }
-```
+{% endhighlight %}
 1.与ReentrantLock中的调用的lock方法为同一个.
