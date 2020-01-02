@@ -17,6 +17,7 @@ Update: ReentrantLock
 **ReentrantLock**
 
 ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new ReentrantLock(true)```表示公平锁.
+
 1.lock()加锁过程:
 
 **非公平锁**
@@ -211,7 +212,7 @@ hasQueuedPredecessors方法理解:
             //如果锁状态被释放,处于自由状态
             Node h = head;
             if (h != null && h.waitStatus != 0)
-                //如果头结点非空,或者头结点有下一个节点h.waitStatus只会被下一个节点改为!=0,唤醒队列中的下一个线程
+                //如果头结点非空,或者头结点有下一个节点(h.waitStatus只会被下一个节点改为!=0)则唤醒队列中的下一个线程
                 unparkSuccessor(h);
             return true;
         }
