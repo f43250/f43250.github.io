@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ReentrantLock部分知识点总结"
+title: "ReentrantLock知识点总结"
 subtitle: 'Some tips on leraning ReentrantLock'
 author: "FengJiaWen"
 header-style: text
@@ -14,13 +14,10 @@ Update: ReentrantLock
 
 ---
 
-*ReentrantLock*
-_ReentrantLock_
 **ReentrantLock**
-__ReentrantLock__
 ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new ReentrantLock(true)```表示公平锁.
 1.lock()加锁过程:
-## 非公平锁
+**非公平锁**
 
 {% highlight java %}
         final void lock() {
@@ -30,7 +27,7 @@ ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new Reentra
                 acquire(1);
         }
 {% endhighlight %}
-###公平锁
+**公平锁**
 {% highlight java %}
         final void lock() {
             acquire(1);
