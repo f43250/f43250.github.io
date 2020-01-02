@@ -45,17 +45,25 @@ plugins: [jekyll-paginate]
 # replace redcarpet to kramdown,
 # although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
 # document: http://jekyllrb.com/docs/configuration/#kramdown
-markdown: redcarpet
-redcarpet:
-    # extensions: [ "hard_wrap","autolink", "tables", "strikethrough", "superscript", "with_toc_data", "highlight", "prettify","no_intra_emphasis"]
-    extensions:
-        - no_intra_emphasis
-        - fenced_code_blocks
-        - autolink
-        - tables
-        - with_toc_data
-        - strikethrough
-
+# markdown: redcarpet
+# redcarpet:
+#     # extensions: [ "hard_wrap","autolink", "tables", "strikethrough", "superscript", "with_toc_data", "highlight", "prettify","no_intra_emphasis"]
+#     extensions:
+#         - no_intra_emphasis
+#         - fenced_code_blocks
+#         - autolink
+#         - tables
+#         - with_toc_data
+#         - strikethrough
+markdown: kramdown
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important
+  syntax_highlighter_opts:
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
 # kramdown:
 #   input: GFM                            # use Github Flavored Markdown !important
 #   syntax_highlighter_opts:
