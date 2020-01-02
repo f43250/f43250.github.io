@@ -16,14 +16,6 @@ Update: ReentrantLock
 
 # ReentrantLock
 
-# ReentrantLock
-
-===
-
-# ReentrantLock
-
----
-
 ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new ReentrantLock(true)```表示公平锁.
 1.lock()加锁过程:
 ## 非公平锁
@@ -244,7 +236,7 @@ hasQueuedPredecessors方法理解:
         }
 {% endhighlight %}
 
-#ReentrantReadWriteLock
+# ReentrantReadWriteLock
 
 **读锁(共享锁)ReadLock**
 {% highlight java %}
