@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ReentrantLock知识点总结"
+title: "ReentrantLock"
 subtitle: 'Some tips on leraning ReentrantLock'
 author: "FengJiaWen"
 header-style: text
@@ -228,7 +228,7 @@ hasQueuedPredecessors方法理解:
                 throw new IllegalMonitorStateException();
             boolean free = false;
             if (c == 0) {
-                //若变量c为0,更改变量free为真,设置持有锁的线程为空,将锁的状态
+                //若变量c为0,更改变量free为真,设置持有锁的线程为空
                 free = true;
                 setExclusiveOwnerThread(null);
             }
