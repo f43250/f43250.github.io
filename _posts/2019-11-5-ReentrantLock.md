@@ -8,6 +8,8 @@ tags:
   - 可重入锁
   - 自旋
   - 锁
+  - AQS
+  - park
 ---
 
 Update: ReentrantLock
@@ -128,13 +130,16 @@ ReentrantLock构造方法```new ReentrantLock()```为非公平锁;```new Reentra
         try {
             boolean interrupted = false;
             for (;;) {
+                //取出新入队Node的前驱Node
                 final Node p = node.predecessor();
+                //如果前驱节点是头结点,自旋一次(有可能在入队过程持有锁的线程释放了锁,所以在入队完成且自己为第一个排队的人时自旋一次)
                 if (p == head && tryAcquire(arg)) {
                     setHead(node);
                     p.next = null; // help GC
                     failed = false;
                     return interrupted;
                 }
+                //判断获取锁失败之后是否需要休眠并且休眠成功
                 if (shouldParkAfterFailedAcquire(p, node) &&
                     parkAndCheckInterrupt())
                     interrupted = true;
